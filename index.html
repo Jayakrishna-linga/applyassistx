@@ -625,7 +625,11 @@
       <h2>Start Your Search</h2>
       <p class="sub">Fill out the form below and our expert team will be in touch.</p>
 
-      <form id="contactForm" method="POST" action="https://formsubmit.co/saichand1508@gmail.com" onsubmit="return validateForm()">
+      <form id="contactForm" method="POST" action="https://api.staticforms.xyz/submit" onsubmit="return validateForm()">
+        <input type="hidden" name="accessKey" value="sf_d14df06d5799c8b53f7dfcd6" />
+        <input type="hidden" name="subject" value="New ApplyAssistX inquiry" />
+        <input type="hidden" name="replyTo" value="{{email}}" />
+        <input type="hidden" name="redirectTo" value="https://www.applyassistx.com/" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
