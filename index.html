@@ -656,7 +656,6 @@
         <input type="hidden" name="accessKey" value="sf_d84c323993110d3166f12721" />
         <input type="hidden" name="subject" value="New ApplyAssistX inquiry" />
         <input type="hidden" name="replyTo" value="{{email}}" />
-        <input type="hidden" name="redirectTo" value="https://www.applyassistx.com/" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -757,7 +756,36 @@
       alert('Please enter your name and email address.');
       return false;
     }
-    return true; // Allow the browser to submit the form to FormSubmit.co
+
+    // Prevent default form submission
+    event.preventDefault();
+
+    // Collect form data
+    const formData = new FormData(document.getElementById('contactForm'));
+
+    // Submit the form data using fetch
+    fetch('https://api.staticforms.xyz/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        // Show success message
+        document.getElementById('successMsg').style.display = 'block';
+        // Refresh the page after a short delay
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      } else {
+        alert('There was an error submitting the form. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    });
+
+    return false; // Prevent default submission
   }
 </script>
 </body>
